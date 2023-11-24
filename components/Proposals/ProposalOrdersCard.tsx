@@ -277,7 +277,7 @@ export function ProposalOrdersCard({
                 ).format(NUMERAL_FORMAT)}
               </Table.Td>
               <Table.Td>
-                ${parseFloat(order.account.openOrders[0].lockedPrice.toNumber()) / 10000}
+                ${order.account.openOrders[0].lockedPrice.toNumber() / 10000}
               </Table.Td>
               <Table.Td>
                 $
@@ -522,10 +522,10 @@ export function ProposalOrdersCard({
               <Table.Td>
                 <ActionIcon
                   disabled={
-                    order.account.position.asksBaseLots > 0 ||
-                    order.account.position.bidsBaseLots > 0 ||
-                    order.account.position.baseFreeNative > 0 ||
-                    order.account.position.quoteFreeNative > 0
+                    order.account.position.asksBaseLots.gt(new BN(0)) ||
+                    order.account.position.bidsBaseLots.gt(new BN(0)) ||
+                    order.account.position.baseFreeNative.gt(new BN(0)) ||
+                    order.account.position.quoteFreeNative.gt(new BN(0))
                   }
                   variant="subtle"
                   loading={isSettling}
